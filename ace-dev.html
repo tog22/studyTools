@@ -171,22 +171,29 @@
 			</form>
 			<form id="videoForm" action="fallback-action-video.html" method="get">
 				<div id="videoform-video-container">
-					<!-- vids hidden for easier dev
 					<div  id="videoform-video1">
 						Vid 1
 					</div>
 					<div  id="videoform-video2">
 						Vid 2
 					</div>
-					-->
+					
+					<!-- vids hidden so they don't massively inflate the source code download size 
+					(or the window size, to make testing easier)
+					
+					Direct links, though these dont' work as src:
+					https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJVC14b3g1T3FNVlk
+					https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJaVQwd1l6Q3pRMHM
+					
 					<video id="videoform-video1" controls>
-						<source id="videoform-video1-source" src="https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJaVQwd1l6Q3pRMHM" type="video/mp4">	
+						<source id="videoform-video1-source" src="" type="video/mp4">	
 						Your browser does not support the video tag.
 					</video>
 					<video id="videoform-video2" controls>
-						<source id="videoform-video2-source" src="https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJVC14b3g1T3FNVlk" type="video/mp4">	
+						<source id="videoform-video2-source" src="" type="video/mp4">	
 						Your browser does not support the video tag.
 					</video>
+					-->
 				</div>
 				<div id="videoform-submit-container">
 					<input type="hidden" id="videoFormId" value="No ID set" />
