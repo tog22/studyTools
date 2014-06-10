@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+	<head>
+		<title> test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="" />
+		
+		<style type="text/css" charset="utf-8">
+			<!--
+			/*  Add CSS here */
+			body {
+				text-align: center;
+				margin: 1em auto;
+				width: 100%; /* set to vid width */
+			}
+			
+			#videoForm,
+			#videoform-video1,
+			#videoform-video2,
+			#adminForm
+			{
+				display: none;
+			}
+			-->
+		</style>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="jstorage.js"></script>
+<script> /* $.jStorage is now available */ </script>
+		<script type="text/javascript">
+			// MAKE ALL LIBRARIES ABOVE LOCAL
+			// Add JS here
+			//alert('base js exec');
+			//var id = 1001;
+			
+			$(document).ready(
+				function() {
+					
+					/* holdover from old plan of setting numeric IDs, which'd prevent data being overwritten if someone enters a duplicate email address, if we added a check to see if a numeric ID already had data set and incremented the ID if so
+					if ($('#emailform-id').attr('value') == "No ID set") {
+						$('#emailform-id').attr('value',"1001");
+					}
+					if ($('#videoform-id').attr('value') == "No ID set") {
+						$('#videoform-id').attr('value',"1001");
+					}
+					if ($('#adminform-id').attr('value') == "No ID set") {
+						$('#adminform-id').attr('value',"1001");
+					}
+					*/
+					
+					$('#emailform-submit').click(
+						function() {
+							/* record data and hide old form */
+							event.preventDefault();
+							$('#emailForm').hide();
+							var email = $('#email').attr('value');
+							localStorage.setItem(email + ' email', email);
+							$.jStorage.set(email + ' email', email);
+							var randomNum = Math.ceil(Math.random()*2);
+							localStorage.setItem(email + ' video', randomNum);
+							$.jStorage.set(email + ' video', randomNum);
+							
+							/* prepare fresh video form  */
+							
+							$('#videoFormId').attr('value',email);
+							/* vids hidden for easier dev */
+							$('#videoform-video1').hide();
+							$('#videoform-video2').hide();
+							
+							if (randomNum == 1) {
+								$('#videoform-video1').show();
+							} else {
+								$('#videoform-video2').show();
+							}
+							
+							
+							/* show video form */
+							$('#videoForm').show();
+							$('#videoFormId').attr('value',email);
+						}
+					);
+					$('#videoform-submit').click(
+						function() {
+							/* hide old form */
+							event.preventDefault();
+							$('#videoForm').hide();
+							
+							/* prepare admin form */
+							var email = $('#videoFormId').attr('value');
+							$('#adminFormId').attr('value',email);
+							$('#adminFormValue').attr('value','');
+							
+							/* show admin form */
+							$('#adminForm').show();
+							
+						}
+					);
+					
+					
+					$('#adminFormSubmit').click(
+						function() {
+							/* record data and hide old form */
+							event.preventDefault();
+							$('#adminForm').hide();
+							var email = $('#adminFormId').attr('value');
+							localStorage.setItem(email + ' admin value', $('#adminFormValue').attr('value'));
+							$.jStorage.set(email + ' admin value', 4);
+							
+							/* prepare fresh email form */
+							$('#email').attr('value','');
+							
+							/* show fresh email form */
+							$('#emailForm').show();
+						}
+					);
+				}
+			)
+		</script>
+	</head>
+	<body>
+		<div class="all-contents">
+			<form id="emailForm" action="fallback-action-email.html" method="get">
+				<p>
+					The group running this event is generously helping a nonprofit organization called Earth Trends, which would like to send a one-time survey to the e-mail address you are entering. Completing this survey will earn you a chance to win $200 cash in a raffle.
+				</p>
+				<div>
+					<label for="email">Your email address:</label>
+					<input id="email" type="text" />
+				</div>
+				<div id="emailform-submit-container">
+					<input type="hidden" id="emailFormId" value="No ID set" />
+					<input type="submit" id="emailform-submit" />
+				</div>
+			</form>
+			<form id="videoForm" action="fallback-action-video.html" method="get">
+				<div id="videoform-video-container">
+					<div  id="videoform-video1">
+						Vid 1
+					</div>
+					<div  id="videoform-video2">
+						Vid 2
+					</div>
+					<!-- vids hidden for easier dev
+					<video id="videoform-video1" controls>
+						<source id="videoform-video1-source" src="bunny.mp4" type="video/mp4">	
+						Your browser does not support the video tag.
+					</video>
+					<video id="videoform-video2" controls>
+						<source id="videoform-video2-source" src="bunny.mp4" type="video/mp4">	
+						Your browser does not support the video tag.
+					</video>
+					-->
+				</div>
+				<div id="videoform-submit-container">
+					<input type="hidden" id="videoFormId" value="No ID set" />
+					<input  id="videoform-submit" type="submit" value="Administrator tasks" />
+				</div>
+				
+			</form>
+			<form id="adminForm" action="fallback-action-admin.html" method="get">
+				<div id="adminFormValueContainer">
+					<label for="adminFormValue">Administrator code:</label>
+					<input id="adminFormValue" type="text" />
+				</div>
+				<div id="adminFormSubmitContainer">
+					<input type="hidden" id="adminFormId" value="No ID set" />
+					<input  id="adminFormSubmit" type="submit" value="Record administrator value" />
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
