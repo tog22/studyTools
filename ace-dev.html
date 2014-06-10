@@ -12,6 +12,21 @@
 				text-align: center;
 				margin: 1em auto;
 				width: 100%; /* set to vid width */
+				font-size: 1em;
+			}
+			
+			input[type="text"] {
+				font-size: 1.25em;
+			}
+			
+			label.error {
+				display: block;
+				margin: 1em 0;
+			}
+			
+			#emailFormIntro {
+				width: 600px;
+				margin: 1.25em auto;
 			}
 			
 			#videoForm,
@@ -21,11 +36,17 @@
 			{
 				display: none;
 			}
+			
+			
 			-->
 		</style>
 		
+		<!-- scripts - jquery first-->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		
+		<script src="libraries/jquery.validate.js"></script>
+		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 <script src="jstorage.js"></script>
 <script> /* $.jStorage is now available */ </script>
 		<script type="text/javascript">
@@ -62,7 +83,6 @@
 							$.jStorage.set(email + ' video', randomNum);
 							
 							/* prepare fresh video form  */
-							
 							$('#videoFormId').attr('value',email);
 							/* vids hidden for easier dev */
 							$('#videoform-video1').hide();
@@ -114,6 +134,22 @@
 							$('#emailForm').show();
 						}
 					);
+	
+					
+
+					$('#emailForm').validate({
+						rules: {
+							email: {
+ 								required: true,
+ 								email: true
+						
+							}
+						},
+						success: function(label) {
+							label.text('OK!').addClass('valid');
+						}
+					});
+
 				}
 			)
 		</script>
@@ -121,12 +157,12 @@
 	<body>
 		<div class="all-contents">
 			<form id="emailForm" action="fallback-action-email.html" method="get">
-				<p>
+				<p id="emailFormIntro">
 					The group running this event is generously helping a nonprofit organization called Earth Trends, which would like to send a one-time survey to the e-mail address you are entering. Completing this survey will earn you a chance to win $200 cash in a raffle.
 				</p>
 				<div>
 					<label for="email">Your email address:</label>
-					<input id="email" type="text" />
+					<input id="email" name="email" type="text" />
 				</div>
 				<div id="emailform-submit-container">
 					<input type="hidden" id="emailFormId" value="No ID set" />
@@ -135,22 +171,22 @@
 			</form>
 			<form id="videoForm" action="fallback-action-video.html" method="get">
 				<div id="videoform-video-container">
+					<!-- vids hidden for easier dev
 					<div  id="videoform-video1">
 						Vid 1
 					</div>
 					<div  id="videoform-video2">
 						Vid 2
 					</div>
-					<!-- vids hidden for easier dev
+					-->
 					<video id="videoform-video1" controls>
-						<source id="videoform-video1-source" src="bunny.mp4" type="video/mp4">	
+						<source id="videoform-video1-source" src="https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJaVQwd1l6Q3pRMHM" type="video/mp4">	
 						Your browser does not support the video tag.
 					</video>
 					<video id="videoform-video2" controls>
-						<source id="videoform-video2-source" src="bunny.mp4" type="video/mp4">	
+						<source id="videoform-video2-source" src="https://drive.google.com/uc?export=download&confirm=oeTX&id=0B5E3kGMyXglJVC14b3g1T3FNVlk" type="video/mp4">	
 						Your browser does not support the video tag.
 					</video>
-					-->
 				</div>
 				<div id="videoform-submit-container">
 					<input type="hidden" id="videoFormId" value="No ID set" />
