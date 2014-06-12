@@ -11,7 +11,8 @@ $(document).ready(function() {
 			var email = splitted[0];
 			$('#holder').append('<tr><td>' + email + '</td><td>' + 
 				localStorage.getItem(email + ' video') + '</td><td>' +
-				localStorage.getItem(email + ' admin value') +'</td></tr>');
+				localStorage.getItem(email + ' admin value') +  '</td><td>' +
+				(new Date(parseInt(localStorage.getItem(email + ' time')))).toString() + '</td></tr>');
 		}
 		
 	}
@@ -21,7 +22,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body><table id='holder'>
-<tr><th>Email</th><th>Video</th><th>Admin Code</th></tr>
+<tr><th>Email</th><th>Video</th><th>Admin Code</th><th>Time</th></tr>
 </table>
 <h1>Raw dump</h1>
 <div id='dump-holder'>
