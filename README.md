@@ -10,14 +10,9 @@ Described at https://impact.hackpad.com/AB-Video-Testing-for-Veg-Ads-poTej9N16HJ
 
 1. Note, we need software that can operate independent of internet access.
 
-2. On the e-mail entry page, there will be text saying the following: “The group running this event is generously helping a nonprofit organization called Earth Trends, which would like to send a one-time survey to the e-mail address you are entering. Completing this survey will earn you a chance to win $200 cash in a raffle.”
+2. On the e-mail entry page, there will be text saying the following: “The group running this event is generously helping a nonprofit organization called Earth Trends, which would like to send a one-time survey to the e-mail address you are entering. Completing this survey will earn you a chance to win $200 cash in a raffle.” Obviously these email addresses need to be stored somewhere.  On the desktop, perhaps.
 
--  Obviously these email addresses need to be stored somewhere.  On the desktop, perhaps.
-
-3. One of two videos will start after participant enters email address.
-
--  I no way let the participant know there are two videos.  
--  Under no condition may participant know that they are involved in a research study (this will bias the participant to expect a follow-up email checking on his/her eating habits).
+3. One of two videos will start after participant enters email address. In no way let the participant know there are two videos. Under no condition may participant know that they are involved in a research study (this will bias the participant to expect a follow-up email checking on his/her eating habits).
 
 4. To advance the computer screen for the next participant, the researcher clicks one of four buttons:
 0 (normal) if:
