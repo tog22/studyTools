@@ -1,0 +1,31 @@
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	for(var idx = 0; idx < localStorage.length; idx++){
+		var key = localStorage.key(idx);
+		var value = localStorage.getItem(key);
+		var splitted = key.split(' ');
+		if (splitted[1] == 'email') {
+			var email = splitted[0];
+			$('#holder').append('<tr><td>' + email + '</td><td>' + 
+				localStorage.getItem(email + ' video') + '</td><td>' +
+				localStorage.getItem(email + ' admin value') +  '</td><td>' +
+				(new Date(parseInt(localStorage.getItem(email + ' time')))).toString() + '</td></tr>');
+		}
+		
+	}
+	
+	$('#dump-holder').text(JSON.stringify(localStorage));
+});
+</script>
+</head>
+<body><table id='holder'>
+<tr><th>Email</th><th>Video</th><th>Admin Code</th><th>Time</th></tr>
+</table>
+<h1>Raw dump</h1>
+<div id='dump-holder'>
+</div>
+</body>
+</html>
